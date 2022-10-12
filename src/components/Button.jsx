@@ -37,13 +37,13 @@ export function ButtonDigit(props) {
 }
 
 export function ButtonFx(props) {
-    const { fx, symbol, onInput, disabled } = props;
+    const { fx, operator, symbol, onInput, disabled } = props;
 
     let cssClass = "btn-fx";
     fx && (cssClass += " fx-" + fx);
 
     const handleInput = () => {
-        onInput && onInput({ fx, value: symbol });
+        onInput && onInput({ value: symbol, fx, operator });
     };
 
     return (
