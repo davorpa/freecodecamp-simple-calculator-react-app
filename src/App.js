@@ -1,8 +1,18 @@
 import React, { useState } from "react";
+import { create, all } from "mathjs";
 import logo from "./logo.svg";
 import "./App.css";
 import Button, { ButtonDigit, ButtonFx } from "./components/Button";
 import ScreenLcd from "./components/ScreenLcd";
+
+const math = create(all, {
+    epsilon: 1e-12,
+    matrix: "Matrix",
+    number: "number",
+    precision: 64,
+    predictable: false,
+    randomSeed: null,
+});
 
 function App() {
     const [output, setOutput] = useState("");
@@ -21,7 +31,15 @@ function App() {
     };
 
     const evaluate = () => {
-        setOutput(expr);
+        let result;
+        try {
+            result = math.evaluate(expr);
+        } catch (e) {
+            setScreenMsg(true);
+            setOutput("Err!");
+            return;
+        }
+        setOutput(result);
     };
 
     return (
