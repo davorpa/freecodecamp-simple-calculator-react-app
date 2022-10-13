@@ -17,29 +17,31 @@ const math = create(all, {
 function App() {
     const [output, setOutput] = useState("");
     const [expr, setExpr] = useState(output);
-    const [hasScreenMsg, setScreenMsg] = useState(false);
+    const [hasScreenMsg, setHasScreenMsg] = useState(false);
 
     const handleInput = ({ value, operator }) => {
-        setOutput(output + value);
-        setExpr(expr + (operator ?? value));
+        setOutput(output + String(value));
+        setExpr(expr + String(operator ?? value));
     };
 
     const reset = () => {
         setOutput("");
         setExpr("");
-        setScreenMsg(false);
+        setHasScreenMsg(false);
     };
 
     const evaluate = () => {
         let result;
         try {
-            result = math.evaluate(expr);
+            result = math.evaluate(expr ?? "");
         } catch (e) {
-            setScreenMsg(true);
+            setHasScreenMsg(true);
             setOutput("Err!");
+            setExpr("");
             return;
         }
-        setOutput(result);
+        setOutput(String(result ?? ""));
+        setExpr(String(result ?? ""));
     };
 
     return (
