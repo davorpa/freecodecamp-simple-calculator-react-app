@@ -18,20 +18,29 @@ function App() {
     const [output, setOutput] = useState("");
     const [expr, setExpr] = useState(output);
     const [hasScreenMsg, setHasScreenMsg] = useState(false);
+    const [appendInput, setAppendInput] = useState(false);
 
     const handleInput = ({ value, operator }) => {
-        setOutput(output + String(value));
-        setExpr(expr + String(operator ?? value));
+        if (appendInput || operator !== void 0) {
+            setOutput(output + String(value));
+            setExpr(expr + String(operator ?? value));
+        } else {
+            setOutput(String(value));
+            setExpr(String(operator ?? value));
+        }
+        setAppendInput(true);
     };
 
     const reset = () => {
         setOutput("");
         setExpr("");
         setHasScreenMsg(false);
+        setAppendInput(false);
     };
 
     const evaluate = () => {
         let result;
+        setAppendInput(false);
         try {
             result = math.evaluate(expr ?? "");
         } catch (e) {
