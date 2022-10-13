@@ -1,22 +1,23 @@
 .screen-lcd {
   height: 75px;
   border-radius: 50px;
-  margin-bottom: 24px;
+  margin: 4px 4px 24px;
   padding: 16px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   font-weight: bold;
-  font-size: 30px;
-  background-color: #0a0a23;
-  color: #f5f6f7;
+  font-size: 32px;
+  background-color: #7e8c74;
+  color: #4d5b43;
   border: 2px solid #999;
   box-shadow: -1px 3px 1px 1px #e5e6f7;
   overflow: hidden;
 }
 
 .screen-lcd.err {
-    background-color: #991a24;
+    background-color: #a92a34;
+    color: #660701;
     border-color: #cc0913;
     box-shadow: -1px 3px 1px 1px #e5b6c7;
 }
